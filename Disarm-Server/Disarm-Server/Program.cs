@@ -1,8 +1,5 @@
 using Disarm_Server;
-using Microsoft.AspNetCore.Hosting.Server;
-using Python.Runtime;
 using System.Diagnostics;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,14 +19,10 @@ app.UseCors(builder => builder
 );
 
 
-
 app.UseDeveloperExceptionPage();
 app.UseSwagger();
 app.UseSwaggerUI();
    
-
-
-
 
 app.MapGet("/", () => "This is the Disarm foundation server");
 
@@ -53,7 +46,7 @@ app.MapPost("/clauses", async (ToDo input) =>
     {
         StartInfo = new ProcessStartInfo
         {
-            FileName = "C:\\inetpub\\disarm-result-generator\\DisarmPythonResultGenerator.exe",
+            FileName = "/app/consoleapp/DisarmPythonResultGenerator",
             Arguments = "\"" + input.Sentence + "\"",
             UseShellExecute = false,
             RedirectStandardOutput = true,
@@ -69,10 +62,7 @@ app.MapPost("/clauses", async (ToDo input) =>
     input.Result = output;
     return input;
 
-
-
 });
-
 
 
 app.Run();
