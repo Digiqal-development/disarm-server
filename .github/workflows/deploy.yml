@@ -1,0 +1,27 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -t disarm-server-v2:latest .
+
+      - name: Stop existing container (if running)
+        run: |
+          docker stop disarm-server-v2-container || true
+          docker rm disarm-server-v2-container || true
+
+      - name: Run new container
+        run: |
+          docker run -d --name disarm-server-v2-container -p 4020:8080 disarm-server-v2:latest
