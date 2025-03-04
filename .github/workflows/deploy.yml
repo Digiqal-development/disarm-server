@@ -15,10 +15,10 @@ jobs:
           
       - name: Build Docker image
         run: |
-          cd Disarm-Server
-          ls 
+          ls
           docker build -t disarm-server-v2:latest .
         working-directory: Disarm-Server
+        
       - name: Stop existing container (if running)
         run: |
           docker stop disarm-server-v2-container || true
