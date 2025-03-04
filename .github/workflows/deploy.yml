@@ -12,7 +12,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+        
+      - name: Show folder structure
+        run: ls -R 
+        
       - name: Build Docker image
         run: |
           cd Disarm-Server
