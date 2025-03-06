@@ -26,4 +26,4 @@ jobs:
 
       - name: Run new container
         run: |
-          docker run -d --name disarm-server-v2-container -p 4020:8080 disarm-server-v2:latest
+          docker run -d --name disarm-server-v2-container -p 4010:8080 disarm-server-v2:latest
